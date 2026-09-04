@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class ProductInventoryParser {
+
+    public static void parseInventoryRecord(String csvLine) {
+        if (csvLine == null) {
+            System.out.println("Invalid Record");
+            return;
+        }
+
+        String[] fields = csvLine.split(",");
+
+        if (fields.length != 3) {
+            System.out.println("Invalid Record");
+        } else {
+            System.out.println("Product: " + fields[0].trim() + " | SKU: " + fields[1].trim() + " | Qty: " + fields[2].trim());
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String csvLine = scanner.nextLine();
+        
+        parseInventoryRecord(csvLine);
+        
+        scanner.close();
+    }
+}
