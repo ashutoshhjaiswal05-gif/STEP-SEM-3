@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class ProductExceptSelf {
+
+    public static int[] productExceptSelf(int[] nums) {
+
+        int n = nums.length;
+        int[] answer = new int[n];
+
+        // Product of elements on the left
+        answer[0] = 1;
+
+        for (int i = 1; i < n; i++) {
+            answer[i] = answer[i - 1] * nums[i - 1];
+        }
+
+        // Product of elements on the right
+        int rightProduct = 1;
+
+        for (int i = n - 1; i >= 0; i--) {
+            answer[i] = answer[i] * rightProduct;
+            rightProduct = rightProduct * nums[i];
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the size of array: ");
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+
+        System.out.println("Enter " + n + " elements:");
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        int[] result = productExceptSelf(nums);
+
+        System.out.println("Product of Array Except Self:");
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(result[i] + " ");
+        }
+
+        sc.close();
+    }
+}
